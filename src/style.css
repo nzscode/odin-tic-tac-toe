@@ -1,3 +1,140 @@
-.redFont {
-    color: red;
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --cell-size: 125px;
+    --winMsg-text: 300%;
+    --xo-size: calc(var(--cell-size) * 0.9);
+}
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    padding: 15px;
+}
+#main {
+    width: 100vw;
+    height: 100vh;
+    margin-top: 150px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    align-content: start;
+}
+#gameboardDiv {
+    width: 500px;
+    height: 500px;
+    margin: 0;
+    border: 10px groove brown;
+    border-radius: 15px;
+    box-shadow: 10px 10px 10px grey;
+    display: grid;
+    gap: 25px;
+    grid-template-columns: repeat(3, auto);
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+}
+
+.cell {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    background-color: yellow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+#winPage {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    flex-direction: column;
+    row-gap: 15px;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#restartBtn,
+#reloadBtn {
+    width: 200px;
+    height: 50px;
+    border-radius: 15px;
+    font-size: 1.25rem;
+    border: none;
+}
+
+#restartBtn:hover,
+#reloadBtn:hover {
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+#winMsg {
+    color: white;
+    font-size: calc(var(--winMsg-text) * 1.2);
+}
+
+#winPage.show {
+    display: flex;
+}
+
+.x::after {
+    content: "";
+    width: calc(var(--xo-size) / 8);
+    height: calc(var(--xo-size) / 1.5);
+    background-color: black;
+    rotate: 45deg;
+    position: absolute;
+}
+.x::before {
+    content: "";
+    width: calc(var(--xo-size) / 8);
+    height: calc(var(--xo-size) / 1.5);
+    background-color: black;
+    rotate: -45deg;
+}
+
+.o::after {
+    content: "";
+    border: calc(var(--xo-size) / 4.5) solid yellow;
+    border-radius: calc(var(--xo-size) * 10);
+    position: absolute;
+}
+.o::before {
+    content: "";
+    border: calc(var(--xo-size) / 3) solid black;
+    border-radius: calc(var(--xo-size) * 10);
+}
+
+.cell.x,
+.cell.o {
+    cursor: not-allowed;
+}
+
+.statusContainer {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+#status {
+    font-size: 50px;
+    font-weight: bold;
+    color: cadetblue;
 }
